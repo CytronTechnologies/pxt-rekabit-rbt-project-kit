@@ -14,7 +14,9 @@
         "main.blocks",
         "main.ts",
         "rgb_led_stick.ts",
-        "big_led.ts"
+        "big_led.ts",
+        "soil_moisture.ts",
+        "ultrasonic.ts"
     ],
     "testFiles": [
         "test.ts"
