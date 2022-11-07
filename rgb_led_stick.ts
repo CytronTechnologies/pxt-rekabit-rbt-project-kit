@@ -7,7 +7,7 @@
  *******************************************************************************/
 
 // Default pin.
-const RGB_STICK_PIN = DigitalPin.P13;
+const RGB_STICK_PIN = DigitalPin.P1;
 
 // Number of LEDs in RGB Bit.
 const RGB_STICK_LENGTH = 8;
@@ -30,7 +30,6 @@ namespace rgb_led_stick {
 
     // Reduce the default brightness.
     rgbStick.setBrightness(25);
-
 
 
     /**
