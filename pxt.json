@@ -1,11 +1,13 @@
 {
     "name": "pxt-rekabit-rbt-project-kit",
-    "version": "0.0.0",
-    "description": "",
+    "version": "0.0.1",
+    "description": "Cytron REKA:BIT RBT Project Kit Extension for MakeCode",
+    "license": "MIT",
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "pxt-rekabit": "github:cytrontechnologies/pxt-rekabit"
     },
     "files": [
         "README.md",
@@ -23,5 +25,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
