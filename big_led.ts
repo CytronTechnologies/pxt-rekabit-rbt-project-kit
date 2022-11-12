@@ -6,6 +6,7 @@
  * Email:   support@cytron.io
  *******************************************************************************/
 
+
 // IO state.
 enum DigitalIoState {
     //% block="off"
@@ -23,23 +24,46 @@ enum DigitalIoState {
 //% weight=8 color=#ff8000 icon="\uf0eb" block="Big LED"
 namespace bigLed {
 
-    
+    // State for each IO pin.
+    let IOState: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
     /**
      * Turn on/off the Big LED (On = 1, Off = 0).
-     * @param pin LED pin. eg: DigitalPin.P13
+     * @param pin LED pin. eg: IOPins.P13
      * @param state LED state.
      */
     //% weight=20
     //% blockGap=8
-    //% blockId=big_led_set_big_led
+    //% blockId=set_big_led
     //% block="set Big LED at pin %pin to %state"
-    //% state.shadow=edubit_digital_state_picker
-    export function setBigLed(pin: DigitalPin, state: number): void {
+    //% state.shadow=big_led_digital_state_picker
+    export function setBigLed(pin: RekaBitIOPins, state: number): void {
         // Limit the number.
         state = rekabit.limit(state, 0, 1);
 
+        // Save the IO state
+        IOState[<number>pin] = state
+
         // Write to pin.
         pins.digitalWritePin(<number>pin, state);
+    }
+
+
+    /**
+     * Toggle the Big LED.
+     * @param pin LED pin. eg: IOPins.P13
+     */
+    //% weight=19
+    //% blockGap=8
+    //% blockId=toggle_big_led
+    //% block="toggle Big LED at pin %pin"
+    export function toggleBigLed(pin: RekaBitIOPins): void {
+        
+        IOState[<number>pin] ^= 1;
+
+        // Write to pin.
+        pins.digitalWritePin(<number>pin, IOState[<number>pin]);
     }
 
 
@@ -49,7 +73,7 @@ namespace bigLed {
      */
     //% blockHidden=true
     //% colorSecondary="#ff8000"
-    //% blockId="edubit_digital_state_picker"
+    //% blockId="big_led_digital_state_picker"
     //% block="%state"
     export function digitalStatePicker(state: DigitalIoState): number {
         return <number>state;
