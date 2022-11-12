@@ -60,7 +60,7 @@ namespace soil_moisture {
     //% blockId=soil_moisture_compare_value
     //% block="soil moisture level at pin %pin %compareType %threshold"
     //% threshold.min=0 threshold.max=1023
-    export function compareAnalog(pin: RekaBitAnalogPins, compareType: AnalogCompareType, threshold: number,): boolean {
+    export function compareAnalog(pin: RekaBitAnalogPins, compareType: AnalogCompareType, threshold: number): boolean {
         let result = false;
         switch (compareType) {
             case AnalogCompareType.MoreThan:
