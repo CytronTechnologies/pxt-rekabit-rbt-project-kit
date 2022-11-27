@@ -13,7 +13,7 @@
         "README.md",
         "main.blocks",
         "main.ts",
-        "rgb_led_stick.ts",
+        "rgb_stick.ts",
         "big_led.ts",
         "soil_moisture.ts",
         "ultrasonic.ts"
@@ -23,7 +23,7 @@
     ],
     "public": true,
     "targetVersions": {
-        "target": "5.0.12",
+        "target": "5.1.2",
         "targetId": "microbit"
     },
     "supportedTargets": [
