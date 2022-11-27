@@ -1,14 +1,3 @@
-/*******************************************************************************
- * MakeCode Extension for Cytron RBT Project Kit
- * main.ts - Board initialization and helper function.
- *
- * Company: Cytron Technologies Sdn Bhd
- * Website: http://www.cytron.io
- * Email:   support@cytron.io
- *******************************************************************************/
-
-
-// IO pins.
 enum RekaBitIOPins {
     //% block="P0"
     P0 = DigitalPin.P0,

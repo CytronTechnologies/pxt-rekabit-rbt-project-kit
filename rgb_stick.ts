@@ -92,12 +92,20 @@ namespace rgb_stick {
     //% blockId="rgb_stick_show_rainbow"
     //% block="show rainbow on RGB Stick"
     export function showRainbow(): void {
-        rgb_stick.showRainbow(1, 340)
+        colorsArray[0] = 0xff0000;
+        colorsArray[1] = 0xff4000;
+        colorsArray[2] = 0xffff00;
+        colorsArray[3] = 0x40ff00;
+        colorsArray[4] = 0x00ff80;
+        colorsArray[5] = 0x0040ff;
+        colorsArray[6] = 0x4000ff;
+        colorsArray[7] = 0xff00c0;
+
+        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
+            rgb_stick.setPixelColor(i, colorsArray[i]);
+        }
+
         rgb_stick.show();
-        
-        //for (let i = 0; i < RGB_STICK_LENGTH; i++) {
-        //    colorsArray[i] = neopixel.rgb(rgb_stick.buf[(i * 3) + 0], rgb_stick.buf[(i * 3) + 1], rgb_stick.buf[(i * 3) + 2])
-        //}
         basic.pause(0);
     }
 
