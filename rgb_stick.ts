@@ -7,21 +7,21 @@
  *******************************************************************************/
 
 // Number of LEDs in RGB Bit.
-const RGB_STICK_LENGTH = 8;
+const npRgbStick_LENGTH = 8;
 
 
 /**
  * Blocks for RGB LED Stick.
  */
 //% weight=9 color=#ff8000 icon="\uf110" block="RGB Stick"
-namespace rgb_stick {
+namespace rgbStick {
 
     // Create RGB Stick as Neopixel Strp
-    let rgb_stick: neopixel.Strip;
+    let npRgbStick: neopixel.Strip;
 
     // Colors array for each pixel.
     let colorsArray: number[] = [];
-    for (let i = 0; i < RGB_STICK_LENGTH; i++) {
+    for (let i = 0; i < npRgbStick_LENGTH; i++) {
         colorsArray.push(0);
     }
 
@@ -30,16 +30,16 @@ namespace rgb_stick {
      * Create a new Neopixel driver for RGB Stick.
      * @param pin the pin where the RGB Stick is connected.
      */
-    //% blockId="rgb_stick_create" 
+    //% blockId="npRgbStick_create" 
     //% block="set RGB Stick at pin %pin"
     //% weight=21 blockGap=40
     export function create(pin: RekabitPortYellowPin): void {
     
-        rgb_stick = neopixel.create(<number>pin, RGB_STICK_LENGTH, NeoPixelMode.RGB);
-        rgb_stick.clear();
+        npRgbStick = neopixel.create(<number>pin, npRgbStick_LENGTH, NeoPixelMode.RGB);
+        npRgbStick.clear();
 
         // Reduce the default brightness.
-        rgb_stick.setBrightness(25);
+        npRgbStick.setBrightness(25);
     }
 
 
@@ -48,16 +48,16 @@ namespace rgb_stick {
      */
     //% weight=20
     //% blockGap=8
-    //% blockId="rgb_stick_turnoff"
+    //% blockId="npRgbStick_turnoff"
     //% block="turn off RGB Stick"
     export function turnoff(): void {
         
-        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
+        for (let i = 0; i < npRgbStick_LENGTH; i++) {
             colorsArray[i] = 0;
         }
 
-        rgb_stick.clear();
-        rgb_stick.show();
+        npRgbStick.clear();
+        npRgbStick.show();
         basic.pause(0);
     }
 
@@ -68,18 +68,18 @@ namespace rgb_stick {
      */
     //% weight=19
     //% blockGap=40
-    //% blockId="rgb_stick_set_brightness"
+    //% blockId="npRgbStick_set_brightness"
     //% block="set RGB Stick brightness to %brightness"
     //% brightness.min=0 brightness.max=255
     export function setBrightness(brightness: number): void {
-        //rgb_stick.setBrightness(brightness);
-        rgb_stick.brightness = brightness & 0xff;
+        //npRgbStick.setBrightness(brightness);
+        npRgbStick.brightness = brightness & 0xff;
 
         // Restore the previous color.
-        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
-            rgb_stick.setPixelColor(i, colorsArray[i]);
+        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+            npRgbStick.setPixelColor(i, colorsArray[i]);
         }
-        rgb_stick.show();
+        npRgbStick.show();
         basic.pause(0);
     }
 
@@ -89,7 +89,7 @@ namespace rgb_stick {
      */
     //% weight=18
     //% blockGap=8
-    //% blockId="rgb_stick_show_rainbow"
+    //% blockId="npRgbStick_show_rainbow"
     //% block="show rainbow on RGB Stick"
     export function showRainbow(): void {
         colorsArray[0] = 0xff0000;
@@ -101,11 +101,11 @@ namespace rgb_stick {
         colorsArray[6] = 0x4000ff;
         colorsArray[7] = 0xff00c0;
 
-        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
-            rgb_stick.setPixelColor(i, colorsArray[i]);
+        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+            npRgbStick.setPixelColor(i, colorsArray[i]);
         }
 
-        rgb_stick.show();
+        npRgbStick.show();
         basic.pause(0);
     }
 
@@ -117,15 +117,15 @@ namespace rgb_stick {
      */
     //% weight=17
     //% blockGap=8
-    //% blockId="rgb_stick_show_color"
+    //% blockId="npRgbStick_show_color"
     //% block="set RGB Stick to %color"
     //% color.shadow="colorNumberPicker"
     export function showColor(color: number): void {
         
-        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
+        for (let i = 0; i < npRgbStick_LENGTH; i++) {
             colorsArray[i] = color;
         }
-        rgb_stick.showColor(color);
+        npRgbStick.showColor(color);
         basic.pause(0);
     }
 
@@ -137,14 +137,14 @@ namespace rgb_stick {
      */
     //% weight=16
     //% blockGap=40
-    //% blockId="rgb_stick_set_pixel_color"
+    //% blockId="npRgbStick_set_pixel_color"
     //% block="set RGB Stick pixel %pixel to %color"
     //% color.shadow="colorNumberPicker"
     //% pixel.min=0 pixel.max=7
     export function setPixelColor(pixel: number, color: number): void {
         colorsArray[pixel] = color;
-        rgb_stick.setPixelColor(pixel, color);
-        rgb_stick.show();
+        npRgbStick.setPixelColor(pixel, color);
+        npRgbStick.show();
         basic.pause(0);
     }
 
@@ -155,7 +155,7 @@ namespace rgb_stick {
      */
     //% weight=15
     //% blockGap=8
-    //% blockId="rgb_stick_shift_pixels"
+    //% blockId="npRgbStick_shift_pixels"
     //% block="shift RGB Stick pixels color by %offset"
     //% offset.min=-7 offset.max=7
     export function shiftPixels(offset: number): void {
@@ -167,7 +167,7 @@ namespace rgb_stick {
         // Shift forward.
         else if (offset > 0) {
             while (offset-- > 0) {
-                for (let i = RGB_STICK_LENGTH - 1; i > 0; i--) {
+                for (let i = npRgbStick_LENGTH - 1; i > 0; i--) {
                     colorsArray[i] = colorsArray[i - 1];
                 }
                 colorsArray[0] = 0;
@@ -178,19 +178,19 @@ namespace rgb_stick {
         else {
             offset = -offset;
             while (offset-- > 0) {
-                for (let i = 0; i < RGB_STICK_LENGTH - 1; i++) {
+                for (let i = 0; i < npRgbStick_LENGTH - 1; i++) {
                     colorsArray[i] = colorsArray[i + 1];
                 }
-                colorsArray[RGB_STICK_LENGTH - 1] = 0;
+                colorsArray[npRgbStick_LENGTH - 1] = 0;
             }
         }
 
 
         // Show the new color.
-        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
-            rgb_stick.setPixelColor(i, colorsArray[i]);
+        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+            npRgbStick.setPixelColor(i, colorsArray[i]);
         }
-        rgb_stick.show();
+        npRgbStick.show();
         basic.pause(0);
     }
 
@@ -201,7 +201,7 @@ namespace rgb_stick {
      */
     //% weight=14
     //% blockGap=50
-    //% blockId="rgb_stick_rotate_pixels"
+    //% blockId="npRgbStick_rotate_pixels"
     //% block="rotate RGB Stick pixels color by %offset"
     //% offset.min=-7 offset.max=7
     export function rotatePixels(offset: number): void {
@@ -213,8 +213,8 @@ namespace rgb_stick {
         // Rotate forward.
         else if (offset > 0) {
             while (offset-- > 0) {
-                let lastLed = colorsArray[RGB_STICK_LENGTH - 1];
-                for (let i = RGB_STICK_LENGTH - 1; i > 0; i--) {
+                let lastLed = colorsArray[npRgbStick_LENGTH - 1];
+                for (let i = npRgbStick_LENGTH - 1; i > 0; i--) {
                     colorsArray[i] = colorsArray[i - 1];
                 }
                 colorsArray[0] = lastLed;
@@ -226,19 +226,19 @@ namespace rgb_stick {
             offset = -offset;
             while (offset-- > 0) {
                 let lastLed = colorsArray[0];
-                for (let i = 0; i < RGB_STICK_LENGTH - 1; i++) {
+                for (let i = 0; i < npRgbStick_LENGTH - 1; i++) {
                     colorsArray[i] = colorsArray[i + 1];
                 }
-                colorsArray[RGB_STICK_LENGTH - 1] = lastLed;
+                colorsArray[npRgbStick_LENGTH - 1] = lastLed;
             }
         }
 
 
         // Show the new color.
-        for (let i = 0; i < RGB_STICK_LENGTH; i++) {
-            rgb_stick.setPixelColor(i, colorsArray[i]);
+        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+            npRgbStick.setPixelColor(i, colorsArray[i]);
         }
-        rgb_stick.show();
+        npRgbStick.show();
         basic.pause(0);
     }
 
