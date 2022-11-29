@@ -33,7 +33,7 @@ enum AnalogCompareType {
  * Blocks for Maker Soil Moisture sensor.
  */
 //% weight=7 color=#ff8000 icon="\uf043" block="Soil Moisture"
-namespace soil_moisture {
+namespace soilMoisture {
     
     
     /**
