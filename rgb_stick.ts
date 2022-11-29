@@ -33,7 +33,7 @@ namespace rgb_stick {
     //% blockId="rgb_stick_create" 
     //% block="set RGB Stick at pin %pin"
     //% weight=21 blockGap=40
-    export function create(pin: RekaBitIOPins): void {
+    export function create(pin: RekabitPortPin0): void {
     
         rgb_stick = neopixel.create(<number>pin, RGB_STICK_LENGTH, NeoPixelMode.RGB);
         rgb_stick.clear();
