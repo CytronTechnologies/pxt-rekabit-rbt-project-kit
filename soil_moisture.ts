@@ -7,14 +7,14 @@
  *******************************************************************************/
 
 
-// Analog pins.
-enum RekaBitAnalogPins {
+// Analog input pins.
+enum RekabitAnalogInPin {
     //% block="P0"
-    P0 = DigitalPin.P0,
+    P0 = AnalogPin.P0,
     //% block="P1"
-    P1 = DigitalPin.P1,
+    P1 = AnalogPin.P1,
     //% block="P2"
-    P2 = DigitalPin.P2
+    P2 = AnalogPin.P2
 }
 
 
@@ -44,7 +44,7 @@ namespace soil_moisture {
     //% blockGap=12
     //% blockId=soil_moisture_level
     //% block="soil moisture level at pin %pin"
-    export function readSoilMoistureLevel(pin: RekaBitAnalogPins): number {
+    export function soilMoistureLevel(pin: RekabitAnalogInPin): number {
         return pins.analogReadPin(<number>pin);
     }
 
@@ -60,17 +60,17 @@ namespace soil_moisture {
     //% blockId=soil_moisture_compare_value
     //% block="soil moisture level at pin %pin %compareType %threshold"
     //% threshold.min=0 threshold.max=1023
-    export function compareAnalog(pin: RekaBitAnalogPins, compareType: AnalogCompareType, threshold: number): boolean {
+    export function compareAnalog(pin: RekabitAnalogInPin, compareType: AnalogCompareType, threshold: number): boolean {
         let result = false;
         switch (compareType) {
             case AnalogCompareType.MoreThan:
-                if (readSoilMoistureLevel(pin) > threshold) {
+                if (soilMoistureLevel(pin) > threshold) {
                     result = true;
                 }
                 break;
 
             case AnalogCompareType.LessThan:
-                if (readSoilMoistureLevel(pin) < threshold) {
+                if (soilMoistureLevel(pin) < threshold) {
                     result = true;
                 }
                 break;
