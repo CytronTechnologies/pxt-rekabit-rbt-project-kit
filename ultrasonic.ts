@@ -6,9 +6,24 @@
  * Email:   support@cytron.io
  *******************************************************************************/
 
-// Default ultrasonic sensor pins.
-let usTrigPin = DigitalPin.P2
-let usEchoPin = DigitalPin.P12
+
+enum RekabitUltrasonicIOPins {
+    //% block="Trig:P0 | Echo:P1"
+    set0 = 0,
+    //% block="Trig:P1 | Echo:P9"
+    set1 = 1,
+    //% block="Trig:P2 | Echo:P12"
+    set2 = 2,
+    //% block="Trig:P13 | Echo:P14"
+    set3 = 3,
+    //% block="Trig:P15 | Echo:P16"
+    set4 = 4
+}
+
+
+// Declare ultrasonic sensor pins.
+let usTrigPin = 0
+let usEchoPin = 0
 
 const MAX_DISTANCE = 300
 
@@ -68,18 +83,40 @@ namespace ultrasonic {
 
     /**
      * Set ultrasonic Trig and Echo pins.
-     * @param trig Trig pin. eg: RekaBitIOPins.P2
-     * @param echo Echo pin. eg: RekaBitIOPins.P12
+     * @param pins Trig & Echo pins. eg: 
      */
     //% weight=20
     //% blockGap=40
     //% blockId=set_ultrasonic_trig_echo
-    //% block="set Ultrasonic Trig to pin %trig & Echo to pin %echo"
-    export function setUltrasonicTrigEcho(trig: RekaBitIOPins, echo: RekaBitIOPins): void {
+    //% block="set Ultrasonic pins to %pins"
+    export function setUltrasonicTrigEcho(pins: RekabitUltrasonicIOPins): void {
         
-        usTrigPin = <number>trig
-        usEchoPin = <number>echo
+        switch (pins) {
+            case RekabitUltrasonicIOPins.set0:
+                usTrigPin = DigitalPin.P0
+                usEchoPin = DigitalPin.P1
+                break;
 
+            case RekabitUltrasonicIOPins.set1:
+                usTrigPin = DigitalPin.P1
+                usEchoPin = DigitalPin.P9
+                break;
+            
+            case RekabitUltrasonicIOPins.set2:
+                usTrigPin = DigitalPin.P2
+                usEchoPin = DigitalPin.P12
+                break;
+            
+            case RekabitUltrasonicIOPins.set3:
+                usTrigPin = DigitalPin.P13
+                usEchoPin = DigitalPin.P14
+                break;
+
+            case RekabitUltrasonicIOPins.set4:
+                usTrigPin = DigitalPin.P15
+                usEchoPin = DigitalPin.P16
+                break;
+        }
     }
     
     
@@ -91,7 +128,7 @@ namespace ultrasonic {
     //% blockGap=12
     //% blockId=read_ultrasonic
     //% block="ultrasonic distance (cm)"
-    export function readUltrasonic(): number {
+    export function ultrasonicDistance(): number {
         if (usFlag == 0) {
             usFlag = 1          // Enable ultrasonic reading in background
             basic.pause(300)
@@ -114,13 +151,13 @@ namespace ultrasonic {
         let result = false;
         switch (compareType) {
             case AnalogCompareType.MoreThan:
-                if (readUltrasonic() > threshold) {
+                if (ultrasonicDistance() > threshold) {
                     result = true;
                 }
                 break;
 
             case AnalogCompareType.LessThan:
-                if (readUltrasonic() < threshold) {
+                if (ultrasonicDistance() < threshold) {
                     result = true;
                 }
                 break;

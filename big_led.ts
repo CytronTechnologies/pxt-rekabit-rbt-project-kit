@@ -37,7 +37,7 @@ namespace bigLED {
     //% blockId=set_big_led
     //% block="set Big LED at pin %pin to %state"
     //% state.shadow=big_led_digital_state_picker
-    export function setBigLed(pin: RekabitPortPin0, state: number): void {
+    export function setBigLed(pin: RekabitPortYellowPin, state: number): void {
         // Limit the number.
         state = rekabit.limit(state, 0, 1);
 
@@ -57,7 +57,7 @@ namespace bigLED {
     //% blockGap=8
     //% blockId=toggle_big_led
     //% block="toggle Big LED at pin %pin"
-    export function toggleBigLed(pin: RekabitPortPin0): void {
+    export function toggleBigLed(pin: RekabitPortYellowPin): void {
         
         IOState[<number>pin] ^= 1;
 
