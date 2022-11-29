@@ -1,4 +1,3 @@
-// IO Pins of REKA:BIT Grove port yellow wire.
 enum RekabitPortYellowPin {
     //% block="P0"
     P0 = AnalogPin.P0,
