@@ -1,6 +1,6 @@
 {
     "name": "pxt-rekabit-rbt-project-kit",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Cytron REKA:BIT RBT Project Kit Extension for MakeCode",
     "license": "MIT",
     "dependencies": {
