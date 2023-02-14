@@ -49,8 +49,8 @@ input.onButtonPressed(Button.AB, function () {
 
 ### RGB Stick
 
-Create an RGB Stick object and assign it to micro:bit pin P0.
-This block must be added at the beginning of each project that uses RGB Stick.
+Initialize RGB Stick and assign micro:bit pin P0 to it.
+> :point_down: This code must be added at the beginning of each project that uses RGB Stick.
 
 ```blocks
 rgbStick.create(RekabitPortYellowPin.P0)
@@ -82,11 +82,59 @@ for (let index = 0; index <= 7; index++) {
 }
 ```
 
+### Big LEDs
 
+Set Big LED at pin P13 to On. 
 
+```blocks
+bigLED.setBigLed(RekabitPortYellowPin.P13, bigLED.digitalStatePicker(DigitalIoState.On))
+```
 
+Toggle Big LED at pin P13 for 4 times. The LED will turn on if its previous state is off, and vice versa.
 
+```blocks
+for (let index = 0; index < 4; index++) {
+    bigLED.toggleBigLed(RekabitPortYellowPin.P13)
+}
+```
 
+### Soil Moisture Sensor
+
+Compare soil moisture level, show :heavy_check_mark: if less than 550 (moist) or show :x: if more than 550 (dry).
+
+```blocks
+basic.forever(function () {
+    if (soilMoisture.compareAnalog(RekabitAnalogInPin.P2, AnalogCompareType.LessThan, 550)) {
+        basic.showIcon(IconNames.Yes)
+    } else {
+        basic.showIcon(IconNames.No)
+    }
+})
+```
+
+### Ultrasonic Sensor
+
+Initialize Ultrasonic sensor and assign micro:bit pins: 
+- P2 to Trig pin
+- P12 to Echo pin
+> :point_down: This code must be added at the beginning of each project that uses Ultrasonic sensor.
+
+```blocks
+ultrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
+```
+
+Compare ultrasonic distance in cm, show :heart: if less than 20cm or show :smiley: if more than 20cm.
+
+```blocks
+ultrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
+basic.forever(function () {
+    if (ultrasonic.compareDistance(AnalogCompareType.LessThan, 20)) {
+        basic.showIcon(IconNames.Heart)
+    } else {
+        basic.showIcon(IconNames.Happy)
+    }
+})
+```
 
 
 ## License
@@ -95,9 +143,6 @@ MIT
 ## Supported targets  
 * for PXT/microbit
 
-
-
 > Open this page at [https://cytrontechnologies.github.io/pxt-rekabit-rbt-project-kit/](https://cytrontechnologies.github.io/pxt-rekabit-rbt-project-kit/)
-
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
