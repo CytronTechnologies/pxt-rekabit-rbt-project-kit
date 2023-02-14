@@ -9,15 +9,15 @@
 
 enum RekabitUltrasonicIOPins {
     //% block="Trig:P0 | Echo:P1"
-    set0 = 0,
+    p0_p1 = 0,
     //% block="Trig:P1 | Echo:P9"
-    set1 = 1,
+    p1_p9 = 1,
     //% block="Trig:P2 | Echo:P12"
-    set2 = 2,
+    p2_p12 = 2,
     //% block="Trig:P13 | Echo:P14"
-    set3 = 3,
+    p13_p14 = 3,
     //% block="Trig:P15 | Echo:P16"
-    set4 = 4
+    p15_p16 = 4
 }
 
 
@@ -92,27 +92,27 @@ namespace ultrasonic {
     export function setUltrasonicTrigEcho(pins: RekabitUltrasonicIOPins): void {
         
         switch (pins) {
-            case RekabitUltrasonicIOPins.set0:
+            case RekabitUltrasonicIOPins.p0_p1:
                 usTrigPin = DigitalPin.P0
                 usEchoPin = DigitalPin.P1
                 break;
 
-            case RekabitUltrasonicIOPins.set1:
+            case RekabitUltrasonicIOPins.p1_p9:
                 usTrigPin = DigitalPin.P1
                 usEchoPin = DigitalPin.P9
                 break;
             
-            case RekabitUltrasonicIOPins.set2:
+            case RekabitUltrasonicIOPins.p2_p12:
                 usTrigPin = DigitalPin.P2
                 usEchoPin = DigitalPin.P12
                 break;
             
-            case RekabitUltrasonicIOPins.set3:
+            case RekabitUltrasonicIOPins.p13_p14:
                 usTrigPin = DigitalPin.P13
                 usEchoPin = DigitalPin.P14
                 break;
 
-            case RekabitUltrasonicIOPins.set4:
+            case RekabitUltrasonicIOPins.p15_p16:
                 usTrigPin = DigitalPin.P15
                 usEchoPin = DigitalPin.P16
                 break;

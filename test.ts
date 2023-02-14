@@ -16,7 +16,7 @@ input.onButtonPressed(Button.B, function () {
     bigLED.setBigLed(RekabitPortYellowPin.P15, bigLED.digitalStatePicker(DigitalIoState.Off))
 })
 rgbStick.create(RekabitPortYellowPin.P0)
-ultrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.set2)
+ultrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
 basic.forever(function () {
     if (soilMoisture.compareAnalog(RekabitAnalogInPin.P1, AnalogCompareType.MoreThan, 512)) {
         basic.showIcon(IconNames.Happy)
