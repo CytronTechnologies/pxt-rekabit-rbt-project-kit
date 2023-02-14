@@ -95,6 +95,7 @@ Toggle Big LED at pin P13 for 4 times. The LED will turn on if its previous stat
 ```blocks
 for (let index = 0; index < 4; index++) {
     bigLED.toggleBigLed(RekabitPortYellowPin.P13)
+    basic.pause(1000)
 }
 ```
 
