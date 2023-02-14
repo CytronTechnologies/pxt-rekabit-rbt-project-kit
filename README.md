@@ -2,7 +2,7 @@
 
 This code provides the MakeCode blocks for [**REKA:BIT RBT Project Kit**](https://www.cytron.io/p-reka-bit-rbt-project-kit) with the aim to lower the learning curve for beginners who wants to build STEAM (and RBT) projects with micro:bit.
 
-![REKA:BIT RBT Project Kit](https://github.com/CytronTechnologies/pxt-rekabit-rbt-project-kit/blob/master/image.png)
+![REKA:BIT RBT Project Kit](https://github.com/CytronTechnologies/pxt-rekabit-rbt-project-kit/blob/master/product-image.png)
 
 This project kit utilizes [**REKA:BIT**](https://www.cytron.io/p-rekabit-simplifying-robotics-w-microbit) which expands the capabilities of the feature-packed **micro:bit** in robotics :robot: applications. With the built-in 2-channel DC motor driver, 4x servo control and external power input DC jack, anyone can build projects with mechanical movements right away. The Grove ports enable additional sensors and modules to be connected conveniently. The LED status indicators on its IO pins provides hassleless code & wiring troubleshooting. REKA:BIT works with **micro:bit V1 & V2**.
 
