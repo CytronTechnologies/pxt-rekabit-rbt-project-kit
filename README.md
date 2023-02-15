@@ -1,6 +1,6 @@
 # REKA:BIT RBT Project Kit Extension for Microsoft MakeCode
 
-This code provides the MakeCode blocks for [**REKA:BIT RBT Project Kit**](https://www.cytron.io/p-reka-bit-rbt-project-kit) with the aim to lower the learning curve for beginners who wants to build STEAM (and RBT) projects with micro:bit.
+This code provides the MakeCode blocks for [**REKA:BIT RBT Project Kit**](https://www.cytron.io/p-reka-bit-rbt-project-kits) with the aim to lower the learning curve for beginners who wants to build STEAM (and RBT) projects with micro:bit.
 
 ![REKA:BIT RBT Project Kit](https://github.com/CytronTechnologies/pxt-rekabit-rbt-project-kit/blob/master/product-image.png)
 
