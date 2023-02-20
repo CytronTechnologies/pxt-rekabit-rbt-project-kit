@@ -1,6 +1,6 @@
 # REKA:BIT RBT Project Kit Extension for Microsoft MakeCode
 
-This code provides the MakeCode blocks for [**REKA:BIT RBT Project Kit**](https://www.cytron.io/p-reka-bit-rbt-project-kits) with the aim to lower the learning curve for beginners who wants to build STEAM (and RBT) projects with micro:bit.
+This code provides the MakeCode blocks for [**REKA:BIT RBT Project Kit**](https://www.cytron.io/p-rekabit-rbt-project-kits) with the aim to lower the learning curve for beginners who wants to build STEAM (and RBT) projects with micro:bit.
 
 ![REKA:BIT RBT Project Kit](https://github.com/CytronTechnologies/pxt-rekabit-rbt-project-kit/blob/master/product-image.png)
 
@@ -11,7 +11,7 @@ This project kit utilizes [**REKA:BIT**](https://www.cytron.io/p-rekabit-simplif
 * Open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * Click on **New Project** and give your project a meaningful name
 * Click on **Extensions** under the gearwheel :gear: menu
-* Search for "**rekabit rbt project**" or "https://github.com/cytrontechnologies/pxt-rekabit-rbt-project-kit"
+* Search for "**rekabit rbt project**" or "https://github.com/CytronTechnologies/pxt-rekabit-rbt-project-kit"
 * Click on the 'rekabit rbt project kit' card to install the extension
 
 
@@ -53,31 +53,31 @@ Initialize RGB Stick and assign micro:bit pin P0 to it.
 > :point_down: This code must be added at the beginning of each project that uses RGB Stick.
 
 ```blocks
-rgbStick.create(RekabitPortYellowPin.P0)
+rekabitRgbStick.create(RekabitPortYellowPin.P0)
 ```
 
 Turn off the RGB Stick.
 
 ```blocks
-rgbStick.create(RekabitPortYellowPin.P0)
-rgbStick.turnoff()
+rekabitRgbStick.create(RekabitPortYellowPin.P0)
+rekabitRgbStick.turnoff()
 ```
 
 Change the RGB Stick brightness to maximum.
 
 ```blocks
-rgbStick.create(RekabitPortYellowPin.P0)
-rgbStick.setBrightness(255)
+rekabitRgbStick.create(RekabitPortYellowPin.P0)
+rekabitRgbStick.setBrightness(255)
 ```
 
 Show RGB Stick to green color on all the pixels and change the color one by one to red.
 
 ```blocks
-rgbStick.create(RekabitPortYellowPin.P0)
-rgbStick.showColor(0x00ff00)
+rekabitRgbStick.create(RekabitPortYellowPin.P0)
+rekabitRgbStick.showColor(0x00ff00)
 basic.pause(1000)
 for (let index = 0; index <= 7; index++) {
-    rgbStick.setPixelColor(index, 0xff0000)
+    rekabitRgbStick.setPixelColor(index, 0xff0000)
     basic.pause(500)
 }
 ```
@@ -87,14 +87,14 @@ for (let index = 0; index <= 7; index++) {
 Set Big LED at pin P13 to On. 
 
 ```blocks
-bigLED.setBigLed(RekabitPortYellowPin.P13, bigLED.digitalStatePicker(DigitalIoState.On))
+rekabitBigLED.setBigLed(RekabitPortYellowPin.P13, rekabitBigLED.digitalStatePicker(RekabitDigitalIoState.On))
 ```
 
 Toggle Big LED at pin P13 for 4 times. The LED will turn on if its previous state is off, and vice versa.
 
 ```blocks
 for (let index = 0; index < 4; index++) {
-    bigLED.toggleBigLed(RekabitPortYellowPin.P13)
+    rekabitBigLED.toggleBigLed(RekabitPortYellowPin.P13)
     basic.pause(1000)
 }
 ```
@@ -105,7 +105,7 @@ Compare soil moisture level, show :heavy_check_mark: if less than 550 (moist) or
 
 ```blocks
 basic.forever(function () {
-    if (soilMoisture.compareAnalog(RekabitAnalogInPin.P2, AnalogCompareType.LessThan, 550)) {
+    if (rekabitSoilMoisture.compareAnalog(RekabitAnalogInPin.P2, RekabitAnalogCompareType.LessThan, 550)) {
         basic.showIcon(IconNames.Yes)
     } else {
         basic.showIcon(IconNames.No)
@@ -121,15 +121,15 @@ Initialize Ultrasonic sensor and assign micro:bit pins:
 > :point_down: This code must be added at the beginning of each project that uses Ultrasonic sensor.
 
 ```blocks
-ultrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
+rekabitUltrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
 ```
 
 Compare ultrasonic distance in cm, show :heart: if less than 20cm or show :smiley: if more than 20cm.
 
 ```blocks
-ultrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
+rekabitUltrasonic.setUltrasonicTrigEcho(RekabitUltrasonicIOPins.p2_p12)
 basic.forever(function () {
-    if (ultrasonic.compareDistance(AnalogCompareType.LessThan, 20)) {
+    if (rekabitUltrasonic.compareDistance(RekabitAnalogCompareType.LessThan, 20)) {
         basic.showIcon(IconNames.Heart)
     } else {
         basic.showIcon(IconNames.Happy)
