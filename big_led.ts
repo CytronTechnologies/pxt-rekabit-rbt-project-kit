@@ -8,7 +8,7 @@
 
 
 // IO state.
-enum DigitalIoState {
+enum RekabitDigitalIoState {
     //% block="off"
     Off = 0,
 
@@ -21,7 +21,7 @@ enum DigitalIoState {
  * Blocks for Big LED.
  */
 //% weight=8 color=#ff8000 icon="\uf0eb" block="Big LED"
-namespace bigLED {
+namespace rekabitBigLED {
 
     // State for each IO pin.
     let IOState: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -74,7 +74,7 @@ namespace bigLED {
     //% colorSecondary="#ff8000"
     //% blockId="big_led_digital_state_picker"
     //% block="%state"
-    export function digitalStatePicker(state: DigitalIoState): number {
+    export function digitalStatePicker(state: RekabitDigitalIoState): number {
         return <number>state;
     }
 }

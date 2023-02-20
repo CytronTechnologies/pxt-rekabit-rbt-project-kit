@@ -7,21 +7,21 @@
  *******************************************************************************/
 
 // Number of LEDs in RGB Bit.
-const npRgbStick_LENGTH = 8;
+const REKABIT_RGBSTICK_LENGTH = 8;
 
 
 /**
  * Blocks for RGB LED Stick.
  */
 //% weight=9 color=#ff8000 icon="\uf110" block="RGB Stick"
-namespace rgbStick {
+namespace rekabitRgbStick {
 
     // Create RGB Stick as Neopixel Strp
     let npRgbStick: neopixel.Strip;
 
     // Colors array for each pixel.
     let colorsArray: number[] = [];
-    for (let i = 0; i < npRgbStick_LENGTH; i++) {
+    for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
         colorsArray.push(0);
     }
 
@@ -35,7 +35,7 @@ namespace rgbStick {
     //% weight=21 blockGap=40
     export function create(pin: RekabitPortYellowPin): void {
     
-        npRgbStick = neopixel.create(<number>pin, npRgbStick_LENGTH, NeoPixelMode.RGB);
+        npRgbStick = neopixel.create(<number>pin, REKABIT_RGBSTICK_LENGTH, NeoPixelMode.RGB);
         npRgbStick.clear();
 
         // Reduce the default brightness.
@@ -52,7 +52,7 @@ namespace rgbStick {
     //% block="turn off RGB Stick"
     export function turnoff(): void {
         
-        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+        for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
             colorsArray[i] = 0;
         }
 
@@ -76,7 +76,7 @@ namespace rgbStick {
         npRgbStick.brightness = brightness & 0xff;
 
         // Restore the previous color.
-        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+        for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
             npRgbStick.setPixelColor(i, colorsArray[i]);
         }
         npRgbStick.show();
@@ -101,7 +101,7 @@ namespace rgbStick {
         colorsArray[6] = 0x4000ff;
         colorsArray[7] = 0xff00c0;
 
-        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+        for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
             npRgbStick.setPixelColor(i, colorsArray[i]);
         }
 
@@ -122,7 +122,7 @@ namespace rgbStick {
     //% color.shadow="colorNumberPicker"
     export function showColor(color: number): void {
         
-        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+        for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
             colorsArray[i] = color;
         }
         npRgbStick.showColor(color);
@@ -167,7 +167,7 @@ namespace rgbStick {
         // Shift forward.
         else if (offset > 0) {
             while (offset-- > 0) {
-                for (let i = npRgbStick_LENGTH - 1; i > 0; i--) {
+                for (let i = REKABIT_RGBSTICK_LENGTH - 1; i > 0; i--) {
                     colorsArray[i] = colorsArray[i - 1];
                 }
                 colorsArray[0] = 0;
@@ -178,16 +178,16 @@ namespace rgbStick {
         else {
             offset = -offset;
             while (offset-- > 0) {
-                for (let i = 0; i < npRgbStick_LENGTH - 1; i++) {
+                for (let i = 0; i < REKABIT_RGBSTICK_LENGTH - 1; i++) {
                     colorsArray[i] = colorsArray[i + 1];
                 }
-                colorsArray[npRgbStick_LENGTH - 1] = 0;
+                colorsArray[REKABIT_RGBSTICK_LENGTH - 1] = 0;
             }
         }
 
 
         // Show the new color.
-        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+        for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
             npRgbStick.setPixelColor(i, colorsArray[i]);
         }
         npRgbStick.show();
@@ -213,8 +213,8 @@ namespace rgbStick {
         // Rotate forward.
         else if (offset > 0) {
             while (offset-- > 0) {
-                let lastLed = colorsArray[npRgbStick_LENGTH - 1];
-                for (let i = npRgbStick_LENGTH - 1; i > 0; i--) {
+                let lastLed = colorsArray[REKABIT_RGBSTICK_LENGTH - 1];
+                for (let i = REKABIT_RGBSTICK_LENGTH - 1; i > 0; i--) {
                     colorsArray[i] = colorsArray[i - 1];
                 }
                 colorsArray[0] = lastLed;
@@ -226,16 +226,16 @@ namespace rgbStick {
             offset = -offset;
             while (offset-- > 0) {
                 let lastLed = colorsArray[0];
-                for (let i = 0; i < npRgbStick_LENGTH - 1; i++) {
+                for (let i = 0; i < REKABIT_RGBSTICK_LENGTH - 1; i++) {
                     colorsArray[i] = colorsArray[i + 1];
                 }
-                colorsArray[npRgbStick_LENGTH - 1] = lastLed;
+                colorsArray[REKABIT_RGBSTICK_LENGTH - 1] = lastLed;
             }
         }
 
 
         // Show the new color.
-        for (let i = 0; i < npRgbStick_LENGTH; i++) {
+        for (let i = 0; i < REKABIT_RGBSTICK_LENGTH; i++) {
             npRgbStick.setPixelColor(i, colorsArray[i]);
         }
         npRgbStick.show();

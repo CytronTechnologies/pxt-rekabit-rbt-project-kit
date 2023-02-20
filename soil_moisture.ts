@@ -19,7 +19,7 @@ enum RekabitAnalogInPin {
 
 
 // Comparison type.
-enum AnalogCompareType {
+enum RekabitAnalogCompareType {
     //% block=">"
     MoreThan = 0,
 
@@ -33,7 +33,7 @@ enum AnalogCompareType {
  * Blocks for Maker Soil Moisture sensor.
  */
 //% weight=7 color=#ff8000 icon="\uf043" block="Soil Moisture"
-namespace soilMoisture {
+namespace rekabitSoilMoisture {
     
     
     /**
@@ -60,16 +60,16 @@ namespace soilMoisture {
     //% blockId=soil_moisture_compare_value
     //% block="soil moisture level at pin %pin %compareType %threshold"
     //% threshold.min=0 threshold.max=1023
-    export function compareAnalog(pin: RekabitAnalogInPin, compareType: AnalogCompareType, threshold: number): boolean {
+    export function compareAnalog(pin: RekabitAnalogInPin, compareType: RekabitAnalogCompareType, threshold: number): boolean {
         let result = false;
         switch (compareType) {
-            case AnalogCompareType.MoreThan:
+            case RekabitAnalogCompareType.MoreThan:
                 if (soilMoistureLevel(pin) > threshold) {
                     result = true;
                 }
                 break;
 
-            case AnalogCompareType.LessThan:
+            case RekabitAnalogCompareType.LessThan:
                 if (soilMoistureLevel(pin) < threshold) {
                     result = true;
                 }

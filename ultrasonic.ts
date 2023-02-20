@@ -22,20 +22,20 @@ enum RekabitUltrasonicIOPins {
 
 
 // Declare ultrasonic sensor pins.
-let usTrigPin = 0
-let usEchoPin = 0
+let rekabitUsTrigPin = 0
+let rekabitUsEchoPin = 0
 
-const MAX_DISTANCE = 300
+const REKABIT_MAX_DISTANCE = 300
 
 
 // Obtain micro:bit board version 
 // Ref: https://support.microbit.org/support/solutions/articles/19000130254-identify-the-version-number-of-the-micro-bit-in-your-program
-const board_ver = control.hardwareVersion()
+const REKABIT_MICROBIT_VERSION = control.hardwareVersion()
 
 // Tuning for different microbit versions to get a more accurate value in cm
-let const_2divspeed = 58
-if (board_ver == "1") {
-    const_2divspeed = 39
+let rekabit_2divspeed = 58
+if (REKABIT_MICROBIT_VERSION == "1") {
+    rekabit_2divspeed = 39
 }
 
 
@@ -44,10 +44,10 @@ if (board_ver == "1") {
  * Blocks for Ultrasonic sensor.
  */
 //% weight=6 color=#ff8000 icon="\uf2ce" block="Ultrasonic"
-namespace ultrasonic {
+namespace rekabitUltrasonic {
 
     // Ultrasonic sensor distance.
-    let usDistance = MAX_DISTANCE
+    let usDistance = REKABIT_MAX_DISTANCE
     let usFlag = 0
 
     // Background function to read ultrasonic sensor distance at 200ms interval.
@@ -55,21 +55,21 @@ namespace ultrasonic {
         while (true) {
             if (usFlag == 1) {      // Wait for read ultrasonic command
                 // Transmit a pulse.
-                pins.digitalWritePin(usTrigPin, 0)
+                pins.digitalWritePin(rekabitUsTrigPin, 0)
                 control.waitMicros(2)
-                pins.digitalWritePin(usTrigPin, 1)
+                pins.digitalWritePin(rekabitUsTrigPin, 1)
                 control.waitMicros(10)
-                pins.digitalWritePin(usTrigPin, 0)
+                pins.digitalWritePin(rekabitUsTrigPin, 0)
 
                 // Read the echo.
-                const pulse = pins.pulseIn(usEchoPin, PulseValue.High, MAX_DISTANCE * const_2divspeed)
+                const pulse = pins.pulseIn(rekabitUsEchoPin, PulseValue.High, REKABIT_MAX_DISTANCE * rekabit_2divspeed)
 
                 // No echo detected.
                 if (pulse == 0) {
-                    usDistance = MAX_DISTANCE
+                    usDistance = REKABIT_MAX_DISTANCE
                 }
                 else {
-                    usDistance = Math.idiv(pulse, const_2divspeed)
+                    usDistance = Math.idiv(pulse, rekabit_2divspeed)
                 }
                 basic.pause(200);   // Recommended minimum time between readings 
                 // for ultrasonic model RCWL-9610 is 200ms.
@@ -93,28 +93,28 @@ namespace ultrasonic {
         
         switch (pins) {
             case RekabitUltrasonicIOPins.p0_p1:
-                usTrigPin = DigitalPin.P0
-                usEchoPin = DigitalPin.P1
+                rekabitUsTrigPin = DigitalPin.P0
+                rekabitUsEchoPin = DigitalPin.P1
                 break;
 
             case RekabitUltrasonicIOPins.p1_p9:
-                usTrigPin = DigitalPin.P1
-                usEchoPin = DigitalPin.P9
+                rekabitUsTrigPin = DigitalPin.P1
+                rekabitUsEchoPin = DigitalPin.P9
                 break;
             
             case RekabitUltrasonicIOPins.p2_p12:
-                usTrigPin = DigitalPin.P2
-                usEchoPin = DigitalPin.P12
+                rekabitUsTrigPin = DigitalPin.P2
+                rekabitUsEchoPin = DigitalPin.P12
                 break;
             
             case RekabitUltrasonicIOPins.p13_p14:
-                usTrigPin = DigitalPin.P13
-                usEchoPin = DigitalPin.P14
+                rekabitUsTrigPin = DigitalPin.P13
+                rekabitUsEchoPin = DigitalPin.P14
                 break;
 
             case RekabitUltrasonicIOPins.p15_p16:
-                usTrigPin = DigitalPin.P15
-                usEchoPin = DigitalPin.P16
+                rekabitUsTrigPin = DigitalPin.P15
+                rekabitUsEchoPin = DigitalPin.P16
                 break;
         }
     }
@@ -147,16 +147,16 @@ namespace ultrasonic {
     //% blockId=ultrasonic_compare_value
     //% block="ultrasonic distance %compareType %threshold cm"
     //% threshold.min=1 threshold.max=MAX_DISTANCE
-    export function compareDistance(compareType: AnalogCompareType, threshold: number): boolean {
+    export function compareDistance(compareType: RekabitAnalogCompareType, threshold: number): boolean {
         let result = false;
         switch (compareType) {
-            case AnalogCompareType.MoreThan:
+            case RekabitAnalogCompareType.MoreThan:
                 if (ultrasonicDistance() > threshold) {
                     result = true;
                 }
                 break;
 
-            case AnalogCompareType.LessThan:
+            case RekabitAnalogCompareType.LessThan:
                 if (ultrasonicDistance() < threshold) {
                     result = true;
                 }
