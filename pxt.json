@@ -11,8 +11,6 @@
     },
     "files": [
         "README.md",
-        "main.blocks",
-        "main.ts",
         "rgb_stick.ts",
         "big_led.ts",
         "soil_moisture.ts",
