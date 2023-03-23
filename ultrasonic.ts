@@ -62,7 +62,8 @@ namespace rekabitUltrasonic {
                 pins.digitalWritePin(rekabitUsTrigPin, 0)
 
                 // Read the echo.
-                const pulse = pins.pulseIn(rekabitUsEchoPin, PulseValue.High, REKABIT_MAX_DISTANCE * rekabit_2divspeed)
+                // The maximum duration need to add in 20ms of deadzone.
+                const pulse = pins.pulseIn(rekabitUsEchoPin, PulseValue.High, REKABIT_MAX_DISTANCE * rekabit_2divspeed + 20000)
 
                 // No echo detected.
                 if (pulse == 0) {
